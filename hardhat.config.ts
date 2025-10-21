@@ -27,6 +27,10 @@ const config: HardhatUserConfig = {
       url: process.env.SEPOLIA_URL || "",
       accounts: pk ? [pk] : [],
     },
+    baseSepolia: {
+      url: process.env.BASE_SEPOLIA_URL || "",
+      accounts: pk ? [pk] : [],
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
