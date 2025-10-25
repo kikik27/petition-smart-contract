@@ -370,7 +370,13 @@
     "yocto-queue": "^0.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "interact:local": "hardhat run scripts/interact.ts --network localhost",
+    "node": "hardhat node",
+    "clean": "hardhat clean"
   },
   "type": "commonjs"
 }

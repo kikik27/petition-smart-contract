@@ -1,0 +1,599 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "metadataURI",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "category",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "targetSignatures",
+        "type": "uint256"
+      }
+    ],
+    "name": "PetitionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "signer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "signatureCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "comment",
+        "type": "string"
+      }
+    ],
+    "name": "PetitionSigned",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "finalSignatureCount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "newMetadataURI",
+        "type": "string"
+      }
+    ],
+    "name": "PetitionCompleted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "status",
+        "type": "uint8"
+      }
+    ],
+    "name": "PetitionStatusChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "signer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newSignatureCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "SignatureWithdrawn",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "newMetadataURI",
+        "type": "string"
+      }
+    ],
+    "name": "completePetition",
+    "outputs": [],
+    "stateMutability": "nonReentrant",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "metadataURI",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "category",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string[]",
+        "name": "tags",
+        "type": "string[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "targetSignatures",
+        "type": "uint256"
+      }
+    ],
+    "name": "createPetition",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonReentrant",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "cancelPetition",
+    "outputs": [],
+    "stateMutability": "nonReentrant",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "comment",
+        "type": "string"
+      }
+    ],
+    "name": "signPetition",
+    "outputs": [],
+    "stateMutability": "nonReentrant",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "withdrawSignature",
+    "outputs": [],
+    "stateMutability": "nonReentrant",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getPetition",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "id",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "metadataURI",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "category",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string[]",
+            "name": "tags",
+            "type": "string[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "signatureCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "targetSignatures",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PetitionNFT.PetitionData",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllPetitions",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "id",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "metadataURI",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "category",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string[]",
+            "name": "tags",
+            "type": "string[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "signatureCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "targetSignatures",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PetitionNFT.PetitionData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPetitionIdByTokenId",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "category",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPetitionsByCategory",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "id",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "metadataURI",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "category",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string[]",
+            "name": "tags",
+            "type": "string[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "signatureCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "targetSignatures",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAt",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct PetitionNFT.PetitionData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalPetitions",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "petitionId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getSignatures",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "signer",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "comment",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct PetitionNFT.Signature[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getUserCreatedPetitions",
+    "outputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "",
+        "type": "bytes32[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getUserSignedPetitions",
+    "outputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "",
+        "type": "bytes32[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
