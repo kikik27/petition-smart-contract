@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @notice Each petition = NFT with metadata stored on IPFS
  * @author Kyy
  */
-contract PetitionNFT is ERC721URIStorage, Ownable {
+contract PetitionNFT2 is ERC721URIStorage, Ownable {
     constructor() ERC721("PetitionNFT", "PETITION") Ownable(msg.sender) {}
 
     // ================= ENUMS =================
