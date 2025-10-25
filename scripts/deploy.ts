@@ -2,7 +2,7 @@ import hre from "hardhat";
 
 async function main() {
   
-  const Voting = await hre.ethers.getContractFactory("Petition");
+  const Voting = await hre.ethers.getContractFactory("PetitionNFT");
   const voting = await Voting.deploy();
 
   await voting.waitForDeployment();
