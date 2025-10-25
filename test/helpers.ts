@@ -36,15 +36,3 @@ export const PETITION_STATUS = {
   COMPLETED: 1,
   CANCELLED: 2,
 };
-
-{
-  "scripts": {
-    "compile": "hardhat compile",
-    "test": "hardhat test",
-    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
-    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
-    "interact:local": "hardhat run scripts/interact.ts --network localhost",
-    "node": "hardhat node",
-    "clean": "hardhat clean"
-  }
-}
